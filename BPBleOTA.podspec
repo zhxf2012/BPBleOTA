@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.swift_version = '5.0'
-  s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
-  s.user_target_xcconfig = { 'MY_SUBSPEC' => 'YES' }
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = {'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
 
   s.source_files = 'BPBleOTA/Classes/**/*'
