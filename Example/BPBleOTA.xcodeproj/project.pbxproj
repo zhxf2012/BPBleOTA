@@ -29,8 +29,8 @@
 
 /* Begin PBXFileReference section */
 		10176A6367CAB1E939C1107E /* Pods_BPBleOTA_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BPBleOTA_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		115358B1EBE60D20828DD981 /* BPBleOTA.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = BPBleOTA.podspec; path = ../BPBleOTA.podspec; sourceTree = "<group>"; };
-		2A4B160DD98D44881D579978 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		115358B1EBE60D20828DD981 /* BPBleOTA.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BPBleOTA.podspec; path = ../BPBleOTA.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2A4B160DD98D44881D579978 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4B65D97DA962A362F789115B /* Pods_BPBleOTA_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BPBleOTA_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* BPBleOTA_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPBleOTA_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		866027D64A6BEBD0E27429DA /* Pods-BPBleOTA_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Example.debug.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Example/Pods-BPBleOTA_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8D1C59FC1BBABD0931C8F8DB /* Pods-BPBleOTA_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Tests.release.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Tests/Pods-BPBleOTA_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9C995A092C6F2A044F4CFC51 /* Pods-BPBleOTA_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Example.release.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Example/Pods-BPBleOTA_Example.release.xcconfig"; sourceTree = "<group>"; };
-		A1BBA00035F089061B3D86B9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		A1BBA00035F089061B3D86B9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FBB8AC5D3F8C6E5E26484BBB /* Pods-BPBleOTA_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Tests/Pods-BPBleOTA_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,7 +156,6 @@
 				FBB8AC5D3F8C6E5E26484BBB /* Pods-BPBleOTA_Tests.debug.xcconfig */,
 				8D1C59FC1BBABD0931C8F8DB /* Pods-BPBleOTA_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -214,10 +213,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = N4C948CJ6M;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = N4C948CJ6M;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -228,6 +229,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -293,10 +295,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BPBleOTA_Example/Pods-BPBleOTA_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BPBleOTA/BPBleOTA.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCBOR/SwiftCBOR.framework",
+				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSMcuManagerLibrary/iOSMcuManagerLibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BPBleOTA.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCBOR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSMcuManagerLibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -497,13 +507,17 @@
 			baseConfigurationReference = 866027D64A6BEBD0E27429DA /* Pods-BPBleOTA_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N4C948CJ6M;
 				INFOPLIST_FILE = BPBleOTA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -512,13 +526,17 @@
 			baseConfigurationReference = 9C995A092C6F2A044F4CFC51 /* Pods-BPBleOTA_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N4C948CJ6M;
 				INFOPLIST_FILE = BPBleOTA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -526,6 +544,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FBB8AC5D3F8C6E5E26484BBB /* Pods-BPBleOTA_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = N4C948CJ6M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -548,6 +567,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D1C59FC1BBABD0931C8F8DB /* Pods-BPBleOTA_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = N4C948CJ6M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

@@ -1,8 +1,12 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '9.0'
+
+project 'BPBleOTA.xcodeproj'
 
 target 'BPBleOTA_Example' do
+  pod 'iOSDFULibrary', '~> 4.13.0'
+  pod 'iOSMcuManagerLibrary' ,"~> 1.2.7.0"
   pod 'BPBleOTA', :path => '../'
 
   target 'BPBleOTA_Tests' do
