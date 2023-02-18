@@ -23,6 +23,14 @@ public class BPOTAManager:NSObject {
         case SMPDFU
     }
     
+    @objc public enum BPDFUError: Int {
+         case  unknow
+         case  simlatorDoesNotSupportDFU
+         case  invalidFirmwareFile
+         case  startDFUFailed
+         case  dfuCancel
+     }
+    
     fileprivate var otaProgress:((Int,String) ->Void)?
     fileprivate var completedHandel:((Bool,Error?) -> Void)?
     
@@ -47,7 +55,7 @@ public class BPOTAManager:NSObject {
             initiator.progressDelegate = self.proxy
             initiator.logger = self.proxy
             guard let controller =  initiator.start(target: peripheral) else {
-                completedHandel?(false,NSError.init(domain: ErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey:"未能开启DFU"]))
+                completedHandel?(false,NSError.init(domain: ErrorDomain, code: BPDFUError.startDFUFailed.rawValue, userInfo: [NSLocalizedDescriptionKey:"未能开启DFU"]))
                 return
             }
             self.dfuController = controller
@@ -80,11 +88,11 @@ public class BPOTAManager:NSObject {
     
     @objc public func otaWithPeripheral(_ peripheral:CBPeripheral,dfuProtocol:DFUProtocolType,firmareFilePath:String,otaProgress:@escaping ((Int,String) ->Void),completedHandel:@escaping ((Bool,Error?) -> Void)) {
 #if TARGET_IPHONE_SIMULATOR
-        completedHandel(false,NSError.init(domain: ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey:"模拟器上不支持OTA升级"]))
+        completedHandel(false,NSError.init(domain: ErrorDomain, code: BPDFUError.simlatorDoesNotSupportDFU, userInfo: [NSLocalizedDescriptionKey:"模拟器上不支持OTA升级"]))
 #else
         
         guard FileManager.default.fileExists(atPath: firmareFilePath) else {
-            completedHandel(false,NSError.init(domain: ErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey:"未找到有效的固件文件:\(firmareFilePath)"]))
+            completedHandel(false,NSError.init(domain: ErrorDomain, code: BPDFUError.invalidFirmwareFile.rawValue, userInfo: [NSLocalizedDescriptionKey:"未找到有效的固件文件:\(firmareFilePath)"]))
             return
         }
     
@@ -150,23 +158,52 @@ extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgrad
     }
     
     public func upgradeStateDidChange(from previousState: FirmwareUpgradeState, to newState: FirmwareUpgradeState) {
-        
+        debugPrint(#function,"from:\(previousState) to \(newState)")
+        switch newState {
+        case .none:
+            break
+        case .requestMcuMgrParameters:
+            debugPrint("REQUESTING MCUMGR PARAMETERS...")
+        case .validate:
+            debugPrint("VALIDATING...")
+        case .upload:
+            debugPrint( "UPLOADING...")
+       // case .eraseAppSettings:
+            //debugPrint("ERASING APP SETTINGS...")
+        case .test:
+            debugPrint("TESTING...")
+        case .confirm:
+            debugPrint("CONFIRMING...")
+        case .reset:
+            debugPrint("RESETTING...")
+        case .success:
+            debugPrint("UPLOAD COMPLETE")
+        }
     }
     
     public func upgradeDidComplete() {
-        
+        debugPrint(#function)
+        self.manager.completedHandel?(true,nil)
+        self.manager.dfuController = nil
+        self.manager.completedHandel = nil
+        self.manager.otaProgress = nil
     }
     
     public func upgradeDidFail(inState state: FirmwareUpgradeState, with error: Error) {
-        
+        debugPrint(#function,state,error)
+        self.manager.completedHandel?(false,error)
     }
     
     public func upgradeDidCancel(state: FirmwareUpgradeState) {
         
+        self.manager.completedHandel?(false,NSError.init(domain: ErrorDomain, code: BPOTAManager.BPDFUError.dfuCancel.rawValue, userInfo: [NSLocalizedDescriptionKey : "取消升级，当前步骤：\(state)"]))
     }
     
     public func uploadProgressDidChange(bytesSent: Int, imageSize: Int, timestamp: Date) {
-        
+        let currentProgress = Float(bytesSent) / Float(imageSize)
+        let percent = Int(currentProgress * 100)
+        let msg = "升级进度 已发送:\(bytesSent),总大小:\(imageSize),progress:\(currentProgress)   percent:\(percent)% -- \(timestamp)"
+        self.manager.otaProgress?(percent,msg)
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didChangeStateTo state: PeripheralState) {

@@ -20,6 +20,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This application connects to Bluetooth LE devices with SMP service.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This application connects to Bluetooth LE devices with SMP service.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -30,6 +34,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

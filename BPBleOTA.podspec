@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BPBleOTA'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'BPBleOTA is a swift library support NordicDFU and SMPDFU for compatible devices'
 
 # This description is used to generate tags and improve search results.
@@ -17,9 +17,12 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = 'BPBleOTA is a swift library support NordicDFU and SMPDFU for compatible devices. It depended on iOSDFULibrary and iOSMcuManagerLibrary,so can support NordicDFU and SMPDFU by BLE. All things BPBleOTA done are aggregating them and provide a unified interface，So it can support pure Objective-C projects which are not supported directly by NordicDFU and SMPDFU'
+  s.description      = <<-DESC
+                            BPBleOTA is a swift library support NordicDFU and SMPDFU for compatible devices. It depended on iOSDFULibrary and iOSMcuManagerLibrary,so can support NordicDFU and SMPDFU by BLE. All things BPBleOTA done are aggregating them and provide a unified interface，So it can support pure Objective-C projects which are not supported directly by NordicDFU and SMPDFU
+                        DESC
 
   s.homepage         = 'https://github.com/zhxf2012/BPBleOTA'
+  s.summary = 'BPBleOTA is a swift library support NordicDFU and SMPDFU for compatible devices. It depended on iOSDFULibrary and iOSMcuManagerLibrary,so can support NordicDFU and SMPDFU by BLE. '
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'zhouxingfa' => 'zhouxingfa@bibibetter.com' }
@@ -28,7 +31,7 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-  s.swift_version = '5.0'
+  s.swift_versions = ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"]
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   s.user_target_xcconfig = {'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
@@ -41,6 +44,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
+   s.requires_arc = true
    s.dependency 'iOSDFULibrary', '~> 4.13.0'
    s.dependency 'iOSMcuManagerLibrary' ,"~> 1.2.7.0"
 end

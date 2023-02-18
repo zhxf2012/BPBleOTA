@@ -15,6 +15,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		6A29F791C395B0325B00EE5D /* Pods_BPBleOTA_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10176A6367CAB1E939C1107E /* Pods_BPBleOTA_Tests.framework */; };
+		C7C5DE8529A09FF5006F9F08 /* DiscoveredPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DE8429A09FF5006F9F08 /* DiscoveredPeripheral.swift */; };
+		C7C5DE8729A0A4BD006F9F08 /* ScannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DE8629A0A4BD006F9F08 /* ScannerTableViewCell.swift */; };
+		C7C5DE8929A0C585006F9F08 /* UIViewController+Hudable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5DE8829A0C585006F9F08 /* UIViewController+Hudable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,10 @@
 		8D1C59FC1BBABD0931C8F8DB /* Pods-BPBleOTA_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Tests.release.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Tests/Pods-BPBleOTA_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9C995A092C6F2A044F4CFC51 /* Pods-BPBleOTA_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Example.release.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Example/Pods-BPBleOTA_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A1BBA00035F089061B3D86B9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C7C5DE8429A09FF5006F9F08 /* DiscoveredPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredPeripheral.swift; sourceTree = "<group>"; };
+		C7C5DE8629A0A4BD006F9F08 /* ScannerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerTableViewCell.swift; sourceTree = "<group>"; };
+		C7C5DE8829A0C585006F9F08 /* UIViewController+Hudable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Hudable.swift"; sourceTree = "<group>"; };
+		C7C5DE8A29A0C961006F9F08 /* BPBleOTA_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BPBleOTA_Example.entitlements; sourceTree = "<group>"; };
 		FBB8AC5D3F8C6E5E26484BBB /* Pods-BPBleOTA_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BPBleOTA_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BPBleOTA_Tests/Pods-BPBleOTA_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +88,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				C7C5DE8A29A0C961006F9F08 /* BPBleOTA_Example.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for BPBleOTA */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -102,6 +110,9 @@
 		607FACD21AFB9204008FA782 /* Example for BPBleOTA */ = {
 			isa = PBXGroup;
 			children = (
+				C7C5DE8829A0C585006F9F08 /* UIViewController+Hudable.swift */,
+				C7C5DE8629A0A4BD006F9F08 /* ScannerTableViewCell.swift */,
+				C7C5DE8429A09FF5006F9F08 /* DiscoveredPeripheral.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -226,10 +237,9 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "BPBleOTA" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -295,6 +305,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BPBleOTA_Example/Pods-BPBleOTA_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BPBleOTA/BPBleOTA.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCBOR/SwiftCBOR.framework",
 				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
@@ -303,6 +314,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BPBleOTA.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCBOR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
@@ -361,6 +373,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				C7C5DE8929A0C585006F9F08 /* UIViewController+Hudable.swift in Sources */,
+				C7C5DE8529A09FF5006F9F08 /* DiscoveredPeripheral.swift in Sources */,
+				C7C5DE8729A0A4BD006F9F08 /* ScannerTableViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +522,7 @@
 			baseConfigurationReference = 866027D64A6BEBD0E27429DA /* Pods-BPBleOTA_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BPBleOTA_Example.entitlements;
 				DEVELOPMENT_TEAM = N4C948CJ6M;
 				INFOPLIST_FILE = BPBleOTA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -526,6 +542,7 @@
 			baseConfigurationReference = 9C995A092C6F2A044F4CFC51 /* Pods-BPBleOTA_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BPBleOTA_Example.entitlements;
 				DEVELOPMENT_TEAM = N4C948CJ6M;
 				INFOPLIST_FILE = BPBleOTA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +20,167 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DU1-bN-5eJ">
+                                <rect key="frame" x="20" y="20" width="335" height="627"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duo-VJ-I4j">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBe-Fd-Ewn">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="aQH-vt-6sw"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="开始扫描"/>
+                                                <connections>
+                                                    <action selector="scanButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aBm-RX-IU4"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RaX-IZ-d8Z">
+                                                <rect key="frame" x="315" y="0.0" width="20" height="35"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="MZj-ov-lBZ">
+                                        <rect key="frame" x="0.0" y="45" width="335" height="470.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="deviceItem" id="gaN-ui-UcQ" userLabel="Device Item" customClass="ScannerTableViewCell" customModule="Device_Manager" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="44.5" width="335" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" tableViewCell="gaN-ui-UcQ" id="qFQ-h7-4v1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="310.5" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rssi_4" translatesAutoresizingMaskIntoConstraints="NO" id="Erz-RX-tjD" userLabel="RSSI Icon">
+                                                            <rect key="frame" x="264.5" y="8" width="38" height="28"/>
+                                                            <color key="tintColor" systemColor="labelColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="38" id="Z2U-Vy-V8G"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Peripheral Name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHY-9e-zMM">
+                                                            <rect key="frame" x="16" y="12" width="147" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Erz-RX-tjD" firstAttribute="top" secondItem="qFQ-h7-4v1" secondAttribute="top" constant="8" id="8zb-rB-qwf"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Erz-RX-tjD" secondAttribute="bottom" constant="8" id="RIf-xg-Ja3"/>
+                                                        <constraint firstItem="IHY-9e-zMM" firstAttribute="leading" secondItem="qFQ-h7-4v1" secondAttribute="leading" constant="16" id="TAb-UF-NnF"/>
+                                                        <constraint firstItem="IHY-9e-zMM" firstAttribute="centerY" secondItem="qFQ-h7-4v1" secondAttribute="centerY" id="dK5-of-Gr5"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Erz-RX-tjD" secondAttribute="trailing" constant="8" id="rHv-GL-Sks"/>
+                                                        <constraint firstItem="Erz-RX-tjD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IHY-9e-zMM" secondAttribute="trailing" constant="10" id="zeu-c3-Grt"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <viewLayoutGuide key="safeArea" id="ijh-1V-0KP"/>
+                                                <color key="backgroundColor" systemColor="tableCellGroupedBackgroundColor"/>
+                                                <connections>
+                                                    <outlet property="peripheralName" destination="IHY-9e-zMM" id="b34-q3-ZYr"/>
+                                                    <outlet property="peripheralRSSIIcon" destination="Erz-RX-tjD" id="kEo-Ki-ITJ"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="vXZ-lx-hvc" id="Whf-Qw-rCD"/>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="XD8-ag-IY9"/>
+                                        </connections>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未选择外设" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABz-VF-jwZ">
+                                        <rect key="frame" x="0.0" y="525.5" width="335" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="cZd-tY-67h">
+                                        <rect key="frame" x="0.0" y="556" width="335" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btc-3h-NTF">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="c4Z-67-6Rx"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="选择固件"/>
+                                                <connections>
+                                                    <action selector="firmwareFileChooseButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KVT-bg-2CA"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未选定固件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ7-Pp-Wmh">
+                                                <rect key="frame" x="128" y="0.0" width="207" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kh7-Gm-3yY">
+                                        <rect key="frame" x="0.0" y="596" width="335" height="31"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8YU-Vi-J7G">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="rto-Af-GUs"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="NordicDFU"/>
+                                                    <segment title="SMPDFU"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="dfuProtocolSegmentValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="zA4-js-rdY"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18d-9T-3Vg">
+                                                <rect key="frame" x="210" y="0.0" width="125" height="31"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="开始升级"/>
+                                                <connections>
+                                                    <action selector="otaButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="6p5-ff-i48"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DU1-bN-5eJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="8ls-F7-SJL"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="DU1-bN-5eJ" secondAttribute="bottom" constant="20" id="M0n-Ol-iZa"/>
+                            <constraint firstAttribute="trailing" secondItem="DU1-bN-5eJ" secondAttribute="trailing" constant="20" id="PHO-fC-OZ4"/>
+                            <constraint firstItem="DU1-bN-5eJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="eVN-Pm-8YY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="RaX-IZ-d8Z" id="L4k-qH-4zp"/>
+                        <outlet property="devicesView" destination="MZj-ov-lBZ" id="ddY-pK-jHM"/>
+                        <outlet property="dfuProtocolSegment" destination="8YU-Vi-J7G" id="9Eh-C9-SY3"/>
+                        <outlet property="firmwareFileChooseButton" destination="Btc-3h-NTF" id="kNa-L0-BLb"/>
+                        <outlet property="firmwarePathLabel" destination="eZ7-Pp-Wmh" id="P24-oE-gk4"/>
+                        <outlet property="otaButton" destination="18d-9T-3Vg" id="kqP-b8-nnZ"/>
+                        <outlet property="scanButton" destination="LBe-Fd-Ewn" id="VY7-C0-uNX"/>
+                        <outlet property="selectDeviceLabel" destination="ABz-VF-jwZ" id="d9l-qc-GAw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="110.19490254872565"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rssi_4" width="128" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tableCellGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
