@@ -138,7 +138,8 @@ class ViewController: UIViewController {
     
     @IBAction func otaButtonTouched(_ sender: Any) {
         guard let selectPeripheral = selectPeripheral?.basePeripheral,let file = firmwarePath,FileManager.default.fileExists(atPath: file) else {
-            fatalError("需要先选定外设和固件文件")
+            showMessageWithTitle(msg:"需要先选定外设和固件文件")
+            return
         }
         
         // 请确保蓝牙外设以及固件文件是指定的dfu协议
