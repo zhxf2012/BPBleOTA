@@ -74,7 +74,7 @@ public class BPOTAManager:NSObject {
             bleTransporter.logDelegate = self.proxy
             bleTransporter.delegate = self.proxy
             let manager  = FirmwareUpgradeManager(transporter: bleTransporter, delegate: self.proxy)
-            manager.mode = .testAndConfirm
+            manager.mode = .confirmOnly
            
             self.dfuManager = manager
             try manager.start(images: package.images,using: dfuManagerConfiguration)
