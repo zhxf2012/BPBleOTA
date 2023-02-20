@@ -22,7 +22,6 @@ Pod::Spec.new do |s|
                         DESC
 
   s.homepage         = 'https://github.com/zhxf2012/BPBleOTA'
-  s.summary = 'BPBleOTA is a swift library support NordicDFU and SMPDFU for compatible devices. It depended on iOSDFULibrary and iOSMcuManagerLibrary,so can support NordicDFU and SMPDFU by BLE. '
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'zhouxingfa' => 'zhouxingfa@bibibetter.com' }
