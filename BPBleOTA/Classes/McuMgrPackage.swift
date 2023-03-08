@@ -8,8 +8,7 @@
 
  
 
-#if TARGET_IPHONE_SIMULATOR
-
+#if targetEnvironment(simulator)
 #else
 
 import Foundation

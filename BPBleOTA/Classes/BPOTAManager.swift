@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreBluetooth
-#if TARGET_IPHONE_SIMULATOR
+#if targetEnvironment(simulator)
 
 #else
 import iOSMcuManagerLibrary
@@ -34,7 +34,10 @@ public class BPOTAManager:NSObject {
     fileprivate var otaProgress:((Int,String) ->Void)?
     fileprivate var completedHandel:((Bool,Error?) -> Void)?
     
-#if TARGET_IPHONE_SIMULATOR
+    fileprivate var otaDevice: CBPeripheral?
+    fileprivate var firmwarePath:String = ""
+    
+#if targetEnvironment(simulator)
     
 #else
     
@@ -45,6 +48,18 @@ public class BPOTAManager:NSObject {
     
     var dfuManager: FirmwareUpgradeManager?
     var dfuController: DFUServiceController?
+    
+    var currentDFUProtocol:DFUProtocolType = .NordicDFU
+    
+    fileprivate func  retryOTA () {
+        if self.currentDFUProtocol == .SMPDFU {
+            if let manager = dfuManager ,manager.isPaused(){
+                manager.resume()
+            } else if let otaDevice = otaDevice {
+               spmOTAWithPeripheral(otaDevice, file: firmwarePath)
+            }
+        }
+    }
     
     private func classicOTAWithPeripheral(_ peripheral:CBPeripheral,file:String) {
         do {
@@ -87,8 +102,8 @@ public class BPOTAManager:NSObject {
     
     
     @objc public func otaWithPeripheral(_ peripheral:CBPeripheral,dfuProtocol:DFUProtocolType,firmareFilePath:String,otaProgress:@escaping ((Int,String) ->Void),completedHandel:@escaping ((Bool,Error?) -> Void)) {
-#if TARGET_IPHONE_SIMULATOR
-        completedHandel(false,NSError.init(domain: ErrorDomain, code: BPDFUError.simlatorDoesNotSupportDFU, userInfo: [NSLocalizedDescriptionKey:"模拟器上不支持OTA升级"]))
+#if targetEnvironment(simulator)
+        completedHandel(false,NSError.init(domain: ErrorDomain, code: BPDFUError.simlatorDoesNotSupportDFU.rawValue, userInfo: [NSLocalizedDescriptionKey:"模拟器上不支持OTA升级"]))
 #else
         
         guard FileManager.default.fileExists(atPath: firmareFilePath) else {
@@ -98,6 +113,7 @@ public class BPOTAManager:NSObject {
     
         self.otaProgress = otaProgress
         self.completedHandel = completedHandel
+        self.currentDFUProtocol = dfuProtocol;
         
         switch dfuProtocol {
         case .NordicDFU:
@@ -112,10 +128,12 @@ public class BPOTAManager:NSObject {
 }
 
 
-#if TARGET_IPHONE_SIMULATOR
+#if targetEnvironment(simulator)
 #else
 fileprivate class BPOTAManagerProxy: NSObject {
     unowned let manager: BPOTAManager
+    private let maxRetryCount = 3
+    private var currentRetryTime = 0
     
     required init(manager: BPOTAManager) {
         self.manager = manager
@@ -154,30 +172,40 @@ extension BPOTAManagerProxy: DFUServiceDelegate,DFUProgressDelegate,LoggerDelega
 
 extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgradeDelegate {
     public func upgradeDidStart(controller: FirmwareUpgradeController) {
-        
+        currentRetryTime = 0
     }
     
     public func upgradeStateDidChange(from previousState: FirmwareUpgradeState, to newState: FirmwareUpgradeState) {
         debugPrint(#function,"from:\(previousState) to \(newState)")
+        var progress = 0
         switch newState {
         case .none:
             break
         case .requestMcuMgrParameters:
+            progress = 1
             debugPrint("REQUESTING MCUMGR PARAMETERS...")
         case .validate:
+            progress = 2
             debugPrint("VALIDATING...")
         case .upload:
+            progress = 3
             debugPrint( "UPLOADING...")
-       // case .eraseAppSettings:
-            //debugPrint("ERASING APP SETTINGS...")
+        case .eraseAppSettings:
+            debugPrint("ERASING APP SETTINGS...")
         case .test:
             debugPrint("TESTING...")
         case .confirm:
+            progress = 98
             debugPrint("CONFIRMING...")
         case .reset:
+            progress = 99
             debugPrint("RESETTING...")
         case .success:
             debugPrint("UPLOAD COMPLETE")
+        }
+        
+        if progress > 0 {
+            self.manager.otaProgress?(progress,"from:\(previousState) to \(newState)")
         }
     }
     
@@ -191,7 +219,12 @@ extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgrad
     
     public func upgradeDidFail(inState state: FirmwareUpgradeState, with error: Error) {
         debugPrint(#function,state,error)
-        self.manager.completedHandel?(false,error)
+        if state != .reset {
+          //  currentRetryTime += 1
+            self.manager.retryOTA()
+        } else {
+            self.manager.completedHandel?(false,error)
+        }
     }
     
     public func upgradeDidCancel(state: FirmwareUpgradeState) {
@@ -201,7 +234,9 @@ extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgrad
     
     public func uploadProgressDidChange(bytesSent: Int, imageSize: Int, timestamp: Date) {
         let currentProgress = Float(bytesSent) / Float(imageSize)
-        let percent = Int(currentProgress * 100)
+        var percent = Int(currentProgress * 100)
+        percent = (percent > 2 ) ? percent : 2
+        percent = (percent < 98 ) ? percent : 98
         let msg = "升级进度 已发送:\(bytesSent),总大小:\(imageSize),progress:\(currentProgress)   percent:\(percent)% -- \(timestamp)"
         self.manager.otaProgress?(percent,msg)
     }
