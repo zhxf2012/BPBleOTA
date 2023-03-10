@@ -1,7 +1,7 @@
 PODS:
-  - BPBleOTA (0.3.0):
+  - BPBleOTA (0.4.0):
     - iOSDFULibrary
-    - iOSMcuManagerLibrary (~> 1.2.7.0)
+    - iOSMcuManagerLibrary
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -9,7 +9,7 @@ PODS:
     - FBSnapshotTestCase/Core
   - iOSDFULibrary (4.13.0):
     - ZIPFoundation (= 0.9.11)
-  - iOSMcuManagerLibrary (1.2.7):
+  - iOSMcuManagerLibrary (1.3):
     - SwiftCBOR (= 0.4.4)
   - MBProgressHUD (1.2.0)
   - SwiftCBOR (0.4.4)
@@ -34,10 +34,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BPBleOTA: bdfb3855a5c9dee1e4bc36e6252dcba2472c37e4
+  BPBleOTA: f04806ef3ef7be868d58113b4a7b660c1b39974e
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   iOSDFULibrary: 3b9de67ed4bfb901b5f09c2fea843f65e152612d
-  iOSMcuManagerLibrary: ee16db12e09d637e04a76d6ba342d1fdd04c4f28
+  iOSMcuManagerLibrary: d5207f03fbc43e64e194ee4c36a08dececb4a06c
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   SwiftCBOR: ce5354ec8b660da2d6fc754462881119dbe1f963
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
