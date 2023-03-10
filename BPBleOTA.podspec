@@ -45,5 +45,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
    s.requires_arc = true
    s.dependency 'iOSDFULibrary'#, '~> 4.13.0'
-   s.dependency 'iOSMcuManagerLibrary' ,"~> 1.2.7.0"
+   s.dependency 'iOSMcuManagerLibrary' #,"~> 1.2.7.0"
 end
