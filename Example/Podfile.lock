@@ -1,6 +1,6 @@
 PODS:
-  - BPBleOTA (0.2.0):
-    - iOSDFULibrary (~> 4.13.0)
+  - BPBleOTA (0.3.0):
+    - iOSDFULibrary
     - iOSMcuManagerLibrary (~> 1.2.7.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BPBleOTA: b179ba7e84531d93b06f233d12e60c67faf6dd2d
+  BPBleOTA: bdfb3855a5c9dee1e4bc36e6252dcba2472c37e4
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   iOSDFULibrary: 3b9de67ed4bfb901b5f09c2fea843f65e152612d
   iOSMcuManagerLibrary: ee16db12e09d637e04a76d6ba342d1fdd04c4f28

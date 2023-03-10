@@ -207,8 +207,6 @@ extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgrad
         debugPrint(#function,"from:\(previousState) to \(newState)")
         var progress = 0
         switch newState {
-        case .none:
-            break
         case .requestMcuMgrParameters:
             progress = 1
             debugPrint("REQUESTING MCUMGR PARAMETERS...")
@@ -218,8 +216,8 @@ extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgrad
         case .upload:
             progress = 3
             debugPrint( "UPLOADING...")
-        case .eraseAppSettings:
-            debugPrint("ERASING APP SETTINGS...")
+//        case .eraseAppSettings:
+//            debugPrint("ERASING APP SETTINGS...")
         case .test:
             debugPrint("TESTING...")
         case .confirm:
@@ -230,6 +228,10 @@ extension BPOTAManagerProxy: McuMgrLogDelegate,PeripheralDelegate,FirmwareUpgrad
             debugPrint("RESETTING...")
         case .success:
             debugPrint("UPLOAD COMPLETE")
+       default:
+            debugPrint("State:\(newState)")
+            break
+            
         }
         
         if progress > 0 {
