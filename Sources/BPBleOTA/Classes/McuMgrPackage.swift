@@ -12,6 +12,7 @@
 #else
 
 import Foundation
+import UIKit
 import iOSMcuManagerLibrary
 import ZIPFoundation
  

@@ -16,12 +16,11 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/zhxf2012/IOS-nRF-Connect-Device-Manager.git",
-                 .branch("master")
+                 branch:"master"
                 ),
         
         .package(
-            url: "https://github.com/NordicSemiconductor/IOS-DFU-Library",
-            .exact("4.13")
+            url: "https://github.com/NordicSemiconductor/IOS-DFU-Library",exact:"4.13.0"
                      )
         
     ],
@@ -30,7 +29,15 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "BPBleOTA",
-            dependencies: ["iOSMcuManagerLibrary","NordicDFU"]),
+            dependencies: [
+                //"iOSMcuManagerLibrary",
+                //"NordicDFU"
+               .product(name: "iOSMcuManagerLibrary", package: "IOS-nRF-Connect-Device-Manager"),
+               .product(name: "NordicDFU", package: "IOS-DFU-Library"),
+            ],
+            path: "Sources"//,
+           // exclude:["Info.plist"]
+        ),
         .testTarget(
             name: "BPBleOTATests",
             dependencies: ["BPBleOTA"]),
