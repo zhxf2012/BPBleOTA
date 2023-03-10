@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = {'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
 
-  s.source_files = 'BPBleOTA/Classes/**/*'
+  s.source_files = 'Sources/BPBleOTA/Classes/**/*'
   
   # s.resource_bundles = {
   #   'BPBleOTA' => ['BPBleOTA/Assets/*.png']

@@ -10,8 +10,17 @@ import CoreBluetooth
 #if targetEnvironment(simulator)
 
 #else
+
 import iOSMcuManagerLibrary
-import iOSDFULibrary
+
+
+#if SWIFT_PACKAGE
+    import NordicDFU
+#else
+    import iOSDFULibrary
+#endif
+
+
 #endif
 
 let ErrorDomain = "BPOTAMangerDomain"

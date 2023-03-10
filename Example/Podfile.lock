@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BPBleOTA: f04806ef3ef7be868d58113b4a7b660c1b39974e
+  BPBleOTA: 1c27798b186be6c1c81b18873230a44fcc4c82b2
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   iOSDFULibrary: 3b9de67ed4bfb901b5f09c2fea843f65e152612d
   iOSMcuManagerLibrary: d5207f03fbc43e64e194ee4c36a08dececb4a06c
