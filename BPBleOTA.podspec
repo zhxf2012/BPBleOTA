@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BPBleOTA'
-  s.version          = '0.4.0'
+  s.version          = '0.5.0'
   s.summary          = 'a swift library aggregating NordicDFU and SMPDFU implement'
 
 # This description is used to generate tags and improve search results.
@@ -45,5 +45,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
    s.requires_arc = true
    s.dependency 'iOSDFULibrary'#, '~> 4.13.0'
-   s.dependency 'iOSMcuManagerLibrary' #,"~> 1.2.7.0"
+   s.dependency 'iOSMcuManagerLibrary' #,"~> 1.3.1"
 end
