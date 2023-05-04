@@ -1,0 +1,2 @@
+github "NordicSemiconductor/IOS-DFU-Library" ~> 4.13.0
+github "NordicSemiconductor/IOS-nRF-Connect-Device-Manager" ~> 1.3.1

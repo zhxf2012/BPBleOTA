@@ -12,7 +12,11 @@
 #else
 
 import Foundation
+#if os(macOS)
+import Cocoa
+#elseif os(iOS)
 import UIKit
+#endif
 import iOSMcuManagerLibrary
 import ZIPFoundation
  
@@ -25,7 +29,11 @@ import ZIPFoundation
     // MARK: - Init
     
     init(from url: URL) throws {
-        let document = UIDocument(fileURL: url)
+#if os(iOS)
+    let document = UIDocument(fileURL: url)
+#elseif os(macOS)
+    let document = try NSDocument(contentsOf: url, ofType: "")
+#endif
         guard let fileType = document.fileType else {
             throw McuMgrPackage.Error.notAValidDocument
         }

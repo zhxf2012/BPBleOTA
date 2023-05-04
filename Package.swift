@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "BPBleOTA",
-    platforms: [.iOS(.v9)],
+    platforms: [.iOS(.v11),.macOS(.v10_14)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -15,8 +15,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/zhxf2012/IOS-nRF-Connect-Device-Manager.git",
-                 branch:"master"
+        .package(url: "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager.git",
+                 exact:"1.3.1"
                 ),
         
         .package(
@@ -41,5 +41,6 @@ let package = Package(
         .testTarget(
             name: "BPBleOTATests",
             dependencies: ["BPBleOTA"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )

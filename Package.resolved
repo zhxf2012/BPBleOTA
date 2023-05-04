@@ -12,10 +12,10 @@
     {
       "identity" : "ios-nrf-connect-device-manager",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/zhxf2012/IOS-nRF-Connect-Device-Manager.git",
+      "location" : "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "03c6cfe82ff5c1ed3bb050fabb8dc4460af95c76"
+        "revision" : "2fcdf9a5b20e6ab0c2215cec37ed3f26c0888126",
+        "version" : "1.3.1"
       }
     },
     {
