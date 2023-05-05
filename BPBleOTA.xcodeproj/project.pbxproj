@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		6A73835D70F8D0EDFBD83226 /* BPBleOTABuilder */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0C13454C2C556EFEE75C12CB /* Build configuration list for PBXAggregateTarget "BPBleOTABuilder" */;
+			buildPhases = (
+				5AC1F7F675F7278EC87080A2 /* Run Script */,
+			);
+			dependencies = (
+			);
+			name = BPBleOTABuilder;
+			productName = BPBleOTABuilder;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		061CC7CE21CB6C6FE7FF202A /* NordicDFU in Frameworks */ = {isa = PBXBuildFile; productRef = EF00186C478D58C88C6BF597 /* NordicDFU */; };
+		3672FCF99CA3C0C854F19CA1 /* BPBleOTA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA189A4E4568415F67A96F8 /* BPBleOTA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4ACED7159A4FE97EDD2CF327 /* BPOTAUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67662D585A2E3D2F07BC37F /* BPOTAUtil.swift */; };
+		79B8BADE38B046D8F357FFFA /* BPBleOTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B67CF7B8E573E88438B9FF /* BPBleOTA.swift */; };
+		A8E4AF8AA95DD48EC4FC8A12 /* iOSMcuManagerLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 44A3062FE80CA6B5B3D840D6 /* iOSMcuManagerLibrary */; };
+		B0E55FD11CFF1A120E250726 /* McuMgrPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAE576589BA34A04B79F2DC /* McuMgrPackage.swift */; };
+		BB7A57D68986025EF74B0403 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 9849358AFC3E05501A11DCE8 /* ZIPFoundation */; };
+		E052E9BDC8D526FA989F27F7 /* BPOTAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF69634FEA0C32D2B3C2AB /* BPOTAManager.swift */; };
+		E0A0715F48D5156AF2C0B16E /* BPBleOTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA189A4E4568415F67A96F8 /* BPBleOTA.framework */; };
+		F71B98850A2A89B8C0A6A989 /* BPBleOTATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22872355E06E4FDE610F04E2 /* BPBleOTATests.swift */; };
+		F71F1B56B48E5D730E20612E /* SwiftCBOR in Frameworks */ = {isa = PBXBuildFile; productRef = 28834A5764EAA756F553F50E /* SwiftCBOR */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28C2729FCF54056FEF56C8C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95B6854CC4D0322B04E7E1D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DA127AF9C5EA26A5A1C434E;
+			remoteInfo = BPBleOTA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9877476F2A242D4B24FC1299 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3672FCF99CA3C0C854F19CA1 /* BPBleOTA.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1DA189A4E4568415F67A96F8 /* BPBleOTA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BPBleOTA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EAE576589BA34A04B79F2DC /* McuMgrPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = McuMgrPackage.swift; sourceTree = "<group>"; };
+		22872355E06E4FDE610F04E2 /* BPBleOTATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPBleOTATests.swift; sourceTree = "<group>"; };
+		38EF69634FEA0C32D2B3C2AB /* BPOTAManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOTAManager.swift; sourceTree = "<group>"; };
+		7FC530F7FA2241FB3EB33881 /* BPBleOTATests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BPBleOTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B67CF7B8E573E88438B9FF /* BPBleOTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPBleOTA.swift; sourceTree = "<group>"; };
+		D67662D585A2E3D2F07BC37F /* BPOTAUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPOTAUtil.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2234F28061B72604964552F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0A0715F48D5156AF2C0B16E /* BPBleOTA.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5F0E2C3316D5801EA37FAEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8E4AF8AA95DD48EC4FC8A12 /* iOSMcuManagerLibrary in Frameworks */,
+				F71F1B56B48E5D730E20612E /* SwiftCBOR in Frameworks */,
+				061CC7CE21CB6C6FE7FF202A /* NordicDFU in Frameworks */,
+				BB7A57D68986025EF74B0403 /* ZIPFoundation in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1AC90A84EB805C3E8C2B5DC9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				47333C6A106892AF7F36FFCB /* BPBleOTA */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1E819C8AE68864173F2C640D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AE91D46E86031DE5AA2EAADC /* BPBleOTATests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2188D8E9332DFA2664855302 = {
+			isa = PBXGroup;
+			children = (
+				1AC90A84EB805C3E8C2B5DC9 /* Sources */,
+				1E819C8AE68864173F2C640D /* Tests */,
+				E0E86CACC6F8A4229A0577EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47333C6A106892AF7F36FFCB /* BPBleOTA */ = {
+			isa = PBXGroup;
+			children = (
+				A9B67CF7B8E573E88438B9FF /* BPBleOTA.swift */,
+				A1D68F800ECFA1EF36C55150 /* Classes */,
+			);
+			path = BPBleOTA;
+			sourceTree = "<group>";
+		};
+		A1D68F800ECFA1EF36C55150 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				38EF69634FEA0C32D2B3C2AB /* BPOTAManager.swift */,
+				D67662D585A2E3D2F07BC37F /* BPOTAUtil.swift */,
+				1EAE576589BA34A04B79F2DC /* McuMgrPackage.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AE91D46E86031DE5AA2EAADC /* BPBleOTATests */ = {
+			isa = PBXGroup;
+			children = (
+				22872355E06E4FDE610F04E2 /* BPBleOTATests.swift */,
+			);
+			path = BPBleOTATests;
+			sourceTree = "<group>";
+		};
+		E0E86CACC6F8A4229A0577EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1DA189A4E4568415F67A96F8 /* BPBleOTA.framework */,
+				7FC530F7FA2241FB3EB33881 /* BPBleOTATests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0B60AD8BD38AE0CFEA5E0A2B /* BPBleOTATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5AFCB2DB6D980F9BB6F7F03 /* Build configuration list for PBXNativeTarget "BPBleOTATests" */;
+			buildPhases = (
+				B6B0BED8CAF139AC445154AA /* Sources */,
+				2234F28061B72604964552F8 /* Frameworks */,
+				9877476F2A242D4B24FC1299 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC47E83D4B34554DF75AF5D3 /* PBXTargetDependency */,
+			);
+			name = BPBleOTATests;
+			productName = BPBleOTATests;
+			productReference = 7FC530F7FA2241FB3EB33881 /* BPBleOTATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3DA127AF9C5EA26A5A1C434E /* BPBleOTA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 710BA8DD66EF5FE4E184712B /* Build configuration list for PBXNativeTarget "BPBleOTA" */;
+			buildPhases = (
+				9C1EFA403A836D3C245796CE /* Sources */,
+				C5F0E2C3316D5801EA37FAEE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BPBleOTA;
+			packageProductDependencies = (
+				44A3062FE80CA6B5B3D840D6 /* iOSMcuManagerLibrary */,
+				28834A5764EAA756F553F50E /* SwiftCBOR */,
+				EF00186C478D58C88C6BF597 /* NordicDFU */,
+				9849358AFC3E05501A11DCE8 /* ZIPFoundation */,
+			);
+			productName = BPBleOTA;
+			productReference = 1DA189A4E4568415F67A96F8 /* BPBleOTA.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95B6854CC4D0322B04E7E1D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = D4B72E61CE151C9C4D8BFE0D /* Build configuration list for PBXProject "BPBleOTA" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2188D8E9332DFA2664855302;
+			packageReferences = (
+				DF7E7D27B9A4A4D054B23221 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */,
+				6D34842DBC8F1762C274E1B3 /* XCRemoteSwiftPackageReference "SwiftCBOR" */,
+				85117379E56A26AA7EF5BF99 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				77FA6B9DB74D2ABD0861EFA5 /* XCRemoteSwiftPackageReference "IOS-nRF-Connect-Device-Manager" */,
+			);
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DA127AF9C5EA26A5A1C434E /* BPBleOTA */,
+				6A73835D70F8D0EDFBD83226 /* BPBleOTABuilder */,
+				0B60AD8BD38AE0CFEA5E0A2B /* BPBleOTATests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5AC1F7F675F7278EC87080A2 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#echo(\"Hello\")\nFRAMEWORK_NAME=BPBleOTA\nSCHEME=\"${FRAMEWORK_NAME}\"\nBUILD_DIR=\"Build\"\nPRODUCT_DIR=\"Products\"\nTMP_DIR=\"${BUILD_DIR}/Tmp\"\nIOS_ARCHIVE_PATH=\"${TMP_DIR}/iOS.xcarchive\"\nIOS_SIM_ARCHIVE_PATH=\"${TMP_DIR}/iOSSimulator.xcarchive\"\nrm -rf ${BUILD_DIR}\nrm -rf \"${PRODUCT_DIR}\"\nxcodebuild archive \\\n -scheme ${SCHEME} \\\n -archivePath ${IOS_SIM_ARCHIVE_PATH} \\\n -destination \"generic/platform=iOS Simulator\" \\\n -sdk iphonesimulator \\\n SKIP_INSTALL=NO \\\n BUILD_LIBRARY_FOR_DISTRIBUTION=YES \\\n #EXCLUDED_ARCHS=\"arm64_x86_64-maccatalyst\" \\\n #| xcpretty\nxcodebuild archive \\\n -scheme ${SCHEME} \\\n -archivePath ${IOS_ARCHIVE_PATH} \\\n -destination \"generic/platform=iOS\" \\\n -sdk iphoneos \\\n SKIP_INSTALL=NO \\\n BUILD_LIBRARY_FOR_DISTRIBUTION=YES \\\n #EXCLUDED_ARCHS=\"arm64_x86_64-maccatalyst\" \\\n #| xcpretty\nxcodebuild -create-xcframework \\\n -framework ${IOS_SIM_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_NAME}.framework \\\n -framework ${IOS_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_NAME}.framework \\\n -output ${PRODUCT_DIR}/${FRAMEWORK_NAME}.xcframework \\\n #| xcpretty\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C1EFA403A836D3C245796CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79B8BADE38B046D8F357FFFA /* BPBleOTA.swift in Sources */,
+				E052E9BDC8D526FA989F27F7 /* BPOTAManager.swift in Sources */,
+				4ACED7159A4FE97EDD2CF327 /* BPOTAUtil.swift in Sources */,
+				B0E55FD11CFF1A120E250726 /* McuMgrPackage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6B0BED8CAF139AC445154AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F71B98850A2A89B8C0A6A989 /* BPBleOTATests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC47E83D4B34554DF75AF5D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DA127AF9C5EA26A5A1C434E /* BPBleOTA */;
+			targetProxy = 28C2729FCF54056FEF56C8C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		206309A2DD2951CFB6695FE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbb.zhxf.BPBleOTATests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A1C721E5260E0D54D64A107 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5D3B2FCC00C558B33D9E09FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+			};
+			name = Release;
+		};
+		8B7FE4A272EDBF6D0CB5AAA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+			};
+			name = Debug;
+		};
+		B46D402FECB57703E230C0B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbb.zhxf.BPBleOTA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		B6424304475B77A747027D5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbb.zhxf.BPBleOTATests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CF994850856899134C057493 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F45B853DD54D6FF85FAA8FAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bbb.zhxf.BPBleOTA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C13454C2C556EFEE75C12CB /* Build configuration list for PBXAggregateTarget "BPBleOTABuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B7FE4A272EDBF6D0CB5AAA3 /* Debug */,
+				5D3B2FCC00C558B33D9E09FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		710BA8DD66EF5FE4E184712B /* Build configuration list for PBXNativeTarget "BPBleOTA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B46D402FECB57703E230C0B8 /* Debug */,
+				F45B853DD54D6FF85FAA8FAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B5AFCB2DB6D980F9BB6F7F03 /* Build configuration list for PBXNativeTarget "BPBleOTATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				206309A2DD2951CFB6695FE0 /* Debug */,
+				B6424304475B77A747027D5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D4B72E61CE151C9C4D8BFE0D /* Build configuration list for PBXProject "BPBleOTA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF994850856899134C057493 /* Debug */,
+				4A1C721E5260E0D54D64A107 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D34842DBC8F1762C274E1B3 /* XCRemoteSwiftPackageReference "SwiftCBOR" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/unrelentingtech/SwiftCBOR";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.4;
+			};
+		};
+		77FA6B9DB74D2ABD0861EFA5 /* XCRemoteSwiftPackageReference "IOS-nRF-Connect-Device-Manager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.1;
+			};
+		};
+		85117379E56A26AA7EF5BF99 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.11;
+			};
+		};
+		DF7E7D27B9A4A4D054B23221 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NordicSemiconductor/IOS-DFU-Library";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.13.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28834A5764EAA756F553F50E /* SwiftCBOR */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D34842DBC8F1762C274E1B3 /* XCRemoteSwiftPackageReference "SwiftCBOR" */;
+			productName = SwiftCBOR;
+		};
+		44A3062FE80CA6B5B3D840D6 /* iOSMcuManagerLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77FA6B9DB74D2ABD0861EFA5 /* XCRemoteSwiftPackageReference "IOS-nRF-Connect-Device-Manager" */;
+			productName = iOSMcuManagerLibrary;
+		};
+		9849358AFC3E05501A11DCE8 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85117379E56A26AA7EF5BF99 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+		EF00186C478D58C88C6BF597 /* NordicDFU */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF7E7D27B9A4A4D054B23221 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */;
+			productName = NordicDFU;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 95B6854CC4D0322B04E7E1D4 /* Project object */;
+}
