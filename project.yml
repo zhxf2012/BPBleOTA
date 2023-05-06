@@ -4,6 +4,7 @@ options:
   deploymentTarget:
     iOS: "11.0"
   bundleIdPrefix: com.bbb.zhxf
+  version: 0.5.0
 
 packages:
   iOSMcuManagerLibrary:
@@ -18,17 +19,55 @@ packages:
   ZIPFoundation:
     url: https://github.com/weichsel/ZIPFoundation
     from: 0.9.11
+    
+targetTemplates:
+  Framework:
+    platform: iOS
+    type: framework
+    sources:
+      - .build/checkouts/${frameworSourceFolder}
+    swift_versions: ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"]
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+      CODE_SIGNING_ALLOWED: NO
 targets:
+  iOSMcuManagerLibrary:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworSourceFolder: IOS-nRF-Connect-Device-Manager/Source
+    dependencies:
+      - package: SwiftCBOR
+  SwiftCBOR:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworSourceFolder: SwiftCBOR/Sources
+      
+  NordicDFU:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworSourceFolder: IOS-DFU-Library/iOSDFULibrary
+    dependencies:
+      - package: ZIPFoundation
+      
+  ZIPFoundation:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworSourceFolder: ZIPFoundation/Sources
+    
+     
+      
   BPBleOTA:
     type: framework
     platform: iOS
     sources: Sources
     dependencies:
         - package: iOSMcuManagerLibrary
-        - package: SwiftCBOR
         - package: NordicDFU
-        - package: ZIPFoundation
-    swift_versions: ["5.0", "5.1", "5.2", "5.3", "5.4"]
+    swift_versions: ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"]
     settings:
         HEADER_SEARCH_PATHS: $(SRCROOT)/Sources
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
@@ -45,43 +84,71 @@ targets:
       GENERATE_INFOPLIST_FILE: YES
       CODE_SIGNING_ALLOWED: NO
 aggregateTargets:
-  BPBleOTABuilder :
+  BuildAllFrameworks :
     settings:
         HEADER_SEARCH_PATHS: $(SRCROOT)/Sources
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
     buildScripts:
       - name: Run Script
         script: |
-          #echo("Hello")
-          FRAMEWORK_NAME=BPBleOTA
-          SCHEME="${FRAMEWORK_NAME}"
           BUILD_DIR="Build"
           PRODUCT_DIR="Products"
-          TMP_DIR="${BUILD_DIR}/Tmp"
-          IOS_ARCHIVE_PATH="${TMP_DIR}/iOS.xcarchive"
-          IOS_SIM_ARCHIVE_PATH="${TMP_DIR}/iOSSimulator.xcarchive"
-          rm -rf ${BUILD_DIR}
-          rm -rf "${PRODUCT_DIR}"
-          xcodebuild archive \
-           -scheme ${SCHEME} \
-           -archivePath ${IOS_SIM_ARCHIVE_PATH} \
-           -destination "generic/platform=iOS Simulator" \
-           -sdk iphonesimulator \
-           SKIP_INSTALL=NO \
-           BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-           #EXCLUDED_ARCHS="arm64_x86_64-maccatalyst" \
-           #| xcpretty
-          xcodebuild archive \
-           -scheme ${SCHEME} \
-           -archivePath ${IOS_ARCHIVE_PATH} \
-           -destination "generic/platform=iOS" \
-           -sdk iphoneos \
-           SKIP_INSTALL=NO \
-           BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-           #EXCLUDED_ARCHS="arm64_x86_64-maccatalyst" \
-           #| xcpretty
-          xcodebuild -create-xcframework \
-           -framework ${IOS_SIM_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_NAME}.framework \
-           -framework ${IOS_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_NAME}.framework \
-           -output ${PRODUCT_DIR}/${FRAMEWORK_NAME}.xcframework \
-           #| xcpretty
+          function build_framework() {
+            local framework_name="$1"
+            local scheme="${framework_name}"
+            local tmp_dir="${BUILD_DIR}/${framework_name}"
+            local ios_archive_path="${tmp_dir}/iOS.xcarchive"
+            local ios_sim_archive_path="${tmp_dir}/iOSSimulator.xcarchive"
+          
+            # Clean up any previous build artifacts
+            rm -rf "${tmp_dir}"
+            #rm -rf "${PRODUCT_DIR}/${framework_name}.xcframework"
+          
+            # Build archives for iOS and iOS Simulator
+            xcodebuild archive \
+              -scheme "${scheme}" \
+              -archivePath "${ios_sim_archive_path}" \
+              -destination "generic/platform=iOS Simulator" \
+              -sdk iphonesimulator \
+              SKIP_INSTALL=NO \
+              BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo "Error: Failed to build archive for ${framework_name} (iOS Simulator)"; exit 1; }
+          
+            xcodebuild archive \
+              -scheme "${scheme}" \
+              -archivePath "${ios_archive_path}" \
+              -destination "generic/platform=iOS" \
+              -sdk iphoneos \
+              SKIP_INSTALL=NO \
+              BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo "Error: Failed to build archive for ${framework_name} (iOS)"; exit 1; }
+
+            xcodebuild -create-xcframework \
+              -framework ${ios_sim_archive_path}/Products/Library/Frameworks/${framework_name}.framework \
+              -framework ${ios_archive_path}/Products/Library/Frameworks/${framework_name}.framework \
+              -output ${PRODUCT_DIR}/${framework_name}.xcframework \
+              #| xcpretty
+
+           
+            echo "build_framework ${framework_name} Successed!"
+          }
+          
+          build_framework "BPBleOTA"
+          build_framework "SwiftCBOR"
+          build_framework "iOSMcuManagerLibrary"
+          build_framework "NordicDFU"
+          build_framework "ZIPFoundation"
+
+          ## Create XCFramework from archives
+          # rm -rf "${PRODUCT_DIR}/BPBleOTA.xcframework"
+          #xcodebuild -create-xcframework \
+          #    -framework "${BUILD_DIR}/BPBleOTA/iOS.xcarchive/Products/Library/Frameworks/BPBleOTA.framework" \
+          #    -framework "${BUILD_DIR}/BPBleOTA/iOSSimulator.xcarchive/Products/Library/Frameworks/BPBleOTA.framework" \
+          #    -framework "${BUILD_DIR}/iOSMcuManagerLibrary/iOS.xcarchive/Products/Library/Frameworks/iOSMcuManagerLibrary.framework" \
+          #    -framework "${BUILD_DIR}/iOSMcuManagerLibrary/iOSSimulator.xcarchive/Products/Library/Frameworks/iOSMcuManagerLibrary.framework" \
+          #    -framework "${BUILD_DIR}/SwiftCBOR/iOS.xcarchive/Products/Library/Frameworks/SwiftCBOR.framework" \
+          #    -framework "${BUILD_DIR}/SwiftCBOR/iOSSimulator.xcarchive/Products/Library/Frameworks/SwiftCBOR.framework" \
+          #    -framework "${BUILD_DIR}/NordicDFU/iOS.xcarchive/Products/Library/Frameworks/NordicDFU.framework" \
+          #    -framework "${BUILD_DIR}/NordicDFU/iOSSimulator.xcarchive/Products/Library/Frameworks/NordicDFU.framework" \
+          #    -framework "${BUILD_DIR}/ZIPFoundation/iOS.xcarchive/Products/Library/Frameworks/ZIPFoundation.framework" \
+          #    -framework "${BUILD_DIR}/ZIPFoundation/iOSSimulator.xcarchive/Products/Library/Frameworks/ZIPFoundation.framework" \
+          #    -output "${PRODUCT_DIR}/BPBleOTA.xcframework"
+              
