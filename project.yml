@@ -25,19 +25,22 @@ targetTemplates:
     platform: iOS
     type: framework
     sources:
-      - .build/checkouts/${frameworSourceFolder}
+      - ${frameworSourceFolder} #.build/checkouts/${frameworSourceFolder}
     swift_versions: ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"]
     settings:
       GENERATE_INFOPLIST_FILE: YES
       CODE_SIGNING_ALLOWED: NO
       MARKETING_VERSION: ${PACKAGE_VERSION}
       CURRENT_PROJECT_VERSION: ${PACKAGE_VERSION}
+      #MACH_O_TYPE: staticlib
+      LD_RUNPATH_SEARCH_PATHS: ["$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks"]
+      #CODE_SIGN_IDENTITY: "iPhone Distribution"
 targets:
   iOSMcuManagerLibrary:
     templates:
       - Framework
     templateAttributes:
-      frameworSourceFolder: IOS-nRF-Connect-Device-Manager/Source
+      frameworSourceFolder: .build/checkouts/IOS-nRF-Connect-Device-Manager/Source
       PACKAGE_VERSION: 1.3.1
     dependencies:
       - package: SwiftCBOR
@@ -46,14 +49,14 @@ targets:
     templates:
       - Framework
     templateAttributes:
-      frameworSourceFolder: SwiftCBOR/Sources
+      frameworSourceFolder: .build/checkouts/SwiftCBOR/Sources
       PACKAGE_VERSION: 0.4.4
       
   NordicDFU:
     templates:
       - Framework
     templateAttributes:
-      frameworSourceFolder: IOS-DFU-Library/iOSDFULibrary
+      frameworSourceFolder: .build/checkouts/IOS-DFU-Library/iOSDFULibrary
       PACKAGE_VERSION: 4.13.0
     dependencies:
       - package: ZIPFoundation
@@ -62,26 +65,22 @@ targets:
     templates:
       - Framework
     templateAttributes:
-      frameworSourceFolder: ZIPFoundation/Sources
+      frameworSourceFolder: .build/checkouts/ZIPFoundation/Sources
       PACKAGE_VERSION: 0.9.11
     
-     
-      
   BPBleOTA:
-    type: framework
-    platform: iOS
-    sources: Sources
+    templates:
+      - Framework
+    templateAttributes:
+      frameworSourceFolder: Sources
+      PACKAGE_VERSION: 0.6.0
     dependencies:
         - package: iOSMcuManagerLibrary
         - package: NordicDFU
-    swift_versions: ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"]
     settings:
-        HEADER_SEARCH_PATHS: $(SRCROOT)/Sources
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
-        GENERATE_INFOPLIST_FILE: YES
-        CODE_SIGNING_ALLOWED: NO
-        MARKETING_VERSION: 0.6.0
-        CURRENT_PROJECT_VERSION: 0.6.20230506
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
+      CURRENT_PROJECT_VERSION: 0.6.20230509
+
   BPBleOTATests:
     type: bundle.unit-test
     platform: iOS
@@ -130,6 +129,8 @@ aggregateTargets:
               SKIP_INSTALL=NO \
               BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo "Error: Failed to build archive for ${framework_name} (iOS)"; exit 1; }
 
+            rm -rf "${PRODUCT_DIR}/${framework_name}.xcframework"
+            
             xcodebuild -create-xcframework \
               -framework ${ios_sim_archive_path}/Products/Library/Frameworks/${framework_name}.framework \
               -framework ${ios_archive_path}/Products/Library/Frameworks/${framework_name}.framework \
@@ -145,19 +146,3 @@ aggregateTargets:
           build_framework "iOSMcuManagerLibrary"
           build_framework "NordicDFU"
           build_framework "ZIPFoundation"
-
-          ## Create XCFramework from archives
-          # rm -rf "${PRODUCT_DIR}/BPBleOTA.xcframework"
-          #xcodebuild -create-xcframework \
-          #    -framework "${BUILD_DIR}/BPBleOTA/iOS.xcarchive/Products/Library/Frameworks/BPBleOTA.framework" \
-          #    -framework "${BUILD_DIR}/BPBleOTA/iOSSimulator.xcarchive/Products/Library/Frameworks/BPBleOTA.framework" \
-          #    -framework "${BUILD_DIR}/iOSMcuManagerLibrary/iOS.xcarchive/Products/Library/Frameworks/iOSMcuManagerLibrary.framework" \
-          #    -framework "${BUILD_DIR}/iOSMcuManagerLibrary/iOSSimulator.xcarchive/Products/Library/Frameworks/iOSMcuManagerLibrary.framework" \
-          #    -framework "${BUILD_DIR}/SwiftCBOR/iOS.xcarchive/Products/Library/Frameworks/SwiftCBOR.framework" \
-          #    -framework "${BUILD_DIR}/SwiftCBOR/iOSSimulator.xcarchive/Products/Library/Frameworks/SwiftCBOR.framework" \
-          #    -framework "${BUILD_DIR}/NordicDFU/iOS.xcarchive/Products/Library/Frameworks/NordicDFU.framework" \
-          #    -framework "${BUILD_DIR}/NordicDFU/iOSSimulator.xcarchive/Products/Library/Frameworks/NordicDFU.framework" \
-          #    -framework "${BUILD_DIR}/ZIPFoundation/iOS.xcarchive/Products/Library/Frameworks/ZIPFoundation.framework" \
-          #    -framework "${BUILD_DIR}/ZIPFoundation/iOSSimulator.xcarchive/Products/Library/Frameworks/ZIPFoundation.framework" \
-          #    -output "${PRODUCT_DIR}/BPBleOTA.xcframework"
-              
