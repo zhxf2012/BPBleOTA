@@ -101,6 +101,8 @@ aggregateTargets:
         script: |
           BUILD_DIR="Build"
           PRODUCT_DIR="Products"
+          
+          success_count=0
           function build_framework() {
             local framework_name="$1"
             local scheme="${framework_name}"
@@ -115,6 +117,7 @@ aggregateTargets:
             # Build archives for iOS and iOS Simulator
             xcodebuild archive \
               -scheme "${scheme}" \
+              -project "${PROJECT_NAME}.xcodeproj" \
               -archivePath "${ios_sim_archive_path}" \
               -destination "generic/platform=iOS Simulator" \
               -sdk iphonesimulator \
@@ -123,6 +126,7 @@ aggregateTargets:
           
             xcodebuild archive \
               -scheme "${scheme}" \
+              -project "${PROJECT_NAME}.xcodeproj" \
               -archivePath "${ios_archive_path}" \
               -destination "generic/platform=iOS" \
               -sdk iphoneos \
@@ -137,12 +141,39 @@ aggregateTargets:
               -output ${PRODUCT_DIR}/${framework_name}.xcframework \
               #| xcpretty
 
-           
-            echo "build_framework ${framework_name} Successed!"
+             if [ $? -eq 0 ]; then
+                echo "build_framework ${framework_name} succeeded!"
+                ((success_count++))
+             else
+                echo "Error: Failed to create xcframework for ${framework_name}"
+                exit 1
+            fi
+            #echo "build_framework ${framework_name} Successed!"
           }
           
-          build_framework "BPBleOTA"
-          build_framework "SwiftCBOR"
-          build_framework "iOSMcuManagerLibrary"
-          build_framework "NordicDFU"
-          build_framework "ZIPFoundation"
+           
+          #build_framework "SwiftCBOR" && \
+          #build_framework "iOSMcuManagerLibrary" && \
+          #build_framework "ZIPFoundation" && \
+          #build_framework "NordicDFU" && \
+          #build_framework "BPBleOTA"
+          
+          frameworks=("SwiftCBOR" "iOSMcuManagerLibrary" "ZIPFoundation" "NordicDFU" "BPBleOTA")
+          
+          for framework in "${frameworks[@]}"; do
+            build_framework "$framework"
+            if [ $result -ne 0 ]; then
+                echo "Terminating script due to build ${framework} failure"
+                break
+            fi
+          done
+
+          if [ $success_count -eq ${#frameworks[@]} ]; then
+            echo "build all frameworks succeeded!"
+            exit 0
+          else
+            echo "Failed to build all frameworks"
+            exit 1
+          fi
+          
+        
