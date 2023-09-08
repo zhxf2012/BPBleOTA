@@ -34,6 +34,7 @@ targetTemplates:
       CURRENT_PROJECT_VERSION: ${PACKAGE_VERSION}
       #MACH_O_TYPE: staticlib
       LD_RUNPATH_SEARCH_PATHS: ["$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks"]
+      DYLIB_COMPATIBILITY_VERSION: ""
       #CODE_SIGN_IDENTITY: "iPhone Distribution"
 targets:
   iOSMcuManagerLibrary:
