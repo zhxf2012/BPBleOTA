@@ -2,14 +2,14 @@ name: BPBleOTA
 options:
   #carthage: true
   deploymentTarget:
-    iOS: "11.0"
+    iOS: "12.0"
   bundleIdPrefix: com.bbb.zhxf
-  version: 0.6.0
+  version: 0.6.2
 
 packages:
   iOSMcuManagerLibrary:
     url: https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager
-    from: 1.3.1
+    from: 1.3.3
   SwiftCBOR:
     url: https://github.com/unrelentingtech/SwiftCBOR
     from: 0.4.4
@@ -42,7 +42,7 @@ targets:
       - Framework
     templateAttributes:
       frameworSourceFolder: .build/checkouts/IOS-nRF-Connect-Device-Manager/Source
-      PACKAGE_VERSION: 1.3.1
+      PACKAGE_VERSION: 1.3.3
     dependencies:
       - package: SwiftCBOR
       
@@ -74,13 +74,13 @@ targets:
       - Framework
     templateAttributes:
       frameworSourceFolder: Sources
-      PACKAGE_VERSION: 0.6.0
+      PACKAGE_VERSION: 0.6.2
     dependencies:
         - package: iOSMcuManagerLibrary
         - package: NordicDFU
     settings:
       SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
-      CURRENT_PROJECT_VERSION: 0.6.20230509
+      CURRENT_PROJECT_VERSION: 0.6.0220231010
 
   BPBleOTATests:
     type: bundle.unit-test

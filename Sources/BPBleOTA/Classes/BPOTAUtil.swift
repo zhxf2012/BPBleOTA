@@ -1,12 +1,18 @@
 //
-//  BPenOTAUtil.swift
-//  BPenOTASDK
+//  UTI.swift
+//  nRF Connect Device Manager
 //
-//  Created by xingfa on 2023/2/16.
+//  Created by Dinesh Harjani on 18/1/22.
+//  Copyright © 2022 Nordic Semiconductor ASA. All rights reserved.
 //
 
 import Foundation
 import UniformTypeIdentifiers
+#if os(macOS)
+import AppKit
+#else
+import UIKit
+#endif
 
 // MARK: - UTI
 
@@ -32,25 +38,18 @@ enum UTI: String, CaseIterable {
             $0.typeIdentifiers.contains(fileType)
         }
     }
+    
+    private static func typeOf(_ url: URL) -> String? {
+#if os(macOS)
+        return try? NSWorkspace.shared.type(ofFile: url.path)
+#else
+        let document = UIDocument(fileURL: url)
+        return document.fileType
+#endif
+    }
+    
+    static func forFile(_ file: URL) -> UTI? {
+        return typeOf(file).flatMap({ from($0) })
+    }
 }
 
-extension Data {
-    
-    internal struct HexEncodingOptions: OptionSet {
-        public let rawValue: Int
-        public static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
-        public static let space = HexEncodingOptions(rawValue: 1 << 1)
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-    }
-    
-    internal func hexEncodedString(options: HexEncodingOptions = []) -> String {
-        var format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
-        if options.contains(.space) {
-            format.append(" ")
-        }
-        return map { String(format: format, $0) }.joined()
-    }
-    
-}
