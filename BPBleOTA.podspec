@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BPBleOTA'
-  s.version          = '0.6.2'
+  s.version          = '0.6.3'
   s.summary          = 'a swift library aggregating NordicDFU and SMPDFU implement'
 
 # This description is used to generate tags and improve search results.
@@ -30,8 +30,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/zhxf2012/BPBleOTA.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '11.0'
-  s.swift_versions = ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"]
+  s.ios.deployment_target = '12.0'
+  s.swift_versions = ["5.0", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9"]
   #s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   #s.user_target_xcconfig = {'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
@@ -45,6 +45,6 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
    s.requires_arc = true
-   s.dependency 'iOSDFULibrary'#, '~> 4.13.0'
-   s.dependency 'iOSMcuManagerLibrary' #,"~> 1.3.3"
+   s.dependency 'iOSDFULibrary', '~> 4.13.0'
+   s.dependency 'iOSMcuManagerLibrary' ,"~> 1.3.3"
 end
