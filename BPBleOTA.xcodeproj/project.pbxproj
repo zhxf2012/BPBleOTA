@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -207,7 +207,7 @@
 		6B9D5C4091D07A2539C90936 /* Data+Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Serialization.swift"; sourceTree = "<group>"; };
 		6DAB51E2F314D29559550D58 /* DFUExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFUExecutor.swift; sourceTree = "<group>"; };
 		700A46DED312470CCEE2F77E /* DFUStarterPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFUStarterPeripheral.swift; sourceTree = "<group>"; };
-		754BFB05C816FF2F03E06C5E /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		754BFB05C816FF2F03E06C5E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		7A08905B61BEEDA114253276 /* Data+McuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+McuManager.swift"; sourceTree = "<group>"; };
 		7EB4F2B5BC36522619D15F20 /* FixedWidthInteger+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FixedWidthInteger+Bytes.swift"; sourceTree = "<group>"; };
 		7FC530F7FA2241FB3EB33881 /* BPBleOTATests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BPBleOTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,7 +237,7 @@
 		AED40315D80E7B9D51066AAF /* DefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultManager.swift; sourceTree = "<group>"; };
 		AEDD0D84472679B0CDC30C8D /* CBOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBOR.swift; sourceTree = "<group>"; };
 		B31FAE0833204EF5D0516343 /* UnkeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnkeyedDecodingContainer.swift; sourceTree = "<group>"; };
-		B43657E3C81C297038B3A7AF /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		B43657E3C81C297038B3A7AF /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		B4B0EBC89779FF074B2597FC /* Archive+Writing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Archive+Writing.swift"; sourceTree = "<group>"; };
 		B5C29A2D281BFA41B859563B /* SecureDFUPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDFUPacket.swift; sourceTree = "<group>"; };
 		B646FDCE5EE6A478115BDB41 /* NordicDFU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NordicDFU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -898,8 +898,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = D4B72E61CE151C9C4D8BFE0D /* Build configuration list for PBXProject "BPBleOTA" */;
 			compatibilityVersion = "Xcode 11.0";
@@ -947,7 +945,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BUILD_DIR=\"Build\"\nPRODUCT_DIR=\"Products\"\n\nsuccess_count=0\nfunction build_framework() {\n  local framework_name=\"$1\"\n  local scheme=\"${framework_name}\"\n  local tmp_dir=\"${BUILD_DIR}/${framework_name}\"\n  local ios_archive_path=\"${tmp_dir}/iOS.xcarchive\"\n  local ios_sim_archive_path=\"${tmp_dir}/iOSSimulator.xcarchive\"\n\n  # Clean up any previous build artifacts\n  rm -rf \"${tmp_dir}\"\n  #rm -rf \"${PRODUCT_DIR}/${framework_name}.xcframework\"\n\n  # Build archives for iOS and iOS Simulator\n  xcodebuild archive \\\n    -scheme \"${scheme}\" \\\n    -project \"${PROJECT_NAME}.xcodeproj\" \\\n    -archivePath \"${ios_sim_archive_path}\" \\\n    -destination \"generic/platform=iOS Simulator\" \\\n    -sdk iphonesimulator \\\n    SKIP_INSTALL=NO \\\n    BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo \"Error: Failed to build archive for ${framework_name} (iOS Simulator)\"; exit 1; }\n\n  xcodebuild archive \\\n    -scheme \"${scheme}\" \\\n    -project \"${PROJECT_NAME}.xcodeproj\" \\\n    -archivePath \"${ios_archive_path}\" \\\n    -destination \"generic/platform=iOS\" \\\n    -sdk iphoneos \\\n    SKIP_INSTALL=NO \\\n    BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo \"Error: Failed to build archive for ${framework_name} (iOS)\"; exit 1; }\n\n  rm -rf \"${PRODUCT_DIR}/${framework_name}.xcframework\"\n  \n  xcodebuild -create-xcframework \\\n    -framework ${ios_sim_archive_path}/Products/Library/Frameworks/${framework_name}.framework \\\n    -framework ${ios_archive_path}/Products/Library/Frameworks/${framework_name}.framework \\\n    -output ${PRODUCT_DIR}/${framework_name}.xcframework \\\n    #| xcpretty\n\n   if [ $? -eq 0 ]; then\n      echo \"build_framework ${framework_name} succeeded!\"\n      ((success_count++))\n   else\n      echo \"Error: Failed to create xcframework for ${framework_name}\"\n      exit 1\n  fi\n  #echo \"build_framework ${framework_name} Successed!\"\n}\n\n \n#build_framework \"SwiftCBOR\" && \\\n#build_framework \"iOSMcuManagerLibrary\" && \\\n#build_framework \"ZIPFoundation\" && \\\n#build_framework \"NordicDFU\" && \\\n#build_framework \"BPBleOTA\"\n\nframeworks=(\"SwiftCBOR\" \"iOSMcuManagerLibrary\" \"ZIPFoundation\" \"NordicDFU\" \"BPBleOTA\")\n\nfor framework in \"${frameworks[@]}\"; do\n  build_framework \"$framework\"\n  if [ $result -ne 0 ]; then\n      echo \"Terminating script due to build ${framework} failure\"\n      break\n  fi\ndone\n\nif [ $success_count -eq ${#frameworks[@]} ]; then\n  echo \"build all frameworks succeeded!\"\n  exit 0\nelse\n  echo \"Failed to build all frameworks\"\n  exit 1\nfi\n";
+			shellScript = "BUILD_DIR=\"Build\"\nPRODUCT_DIR=\"Products\"\n\nsuccess_count=0\nfunction build_framework() {\n  local framework_name=\"$1\"\n  local scheme=\"${framework_name}\"\n  local tmp_dir=\"${BUILD_DIR}/${framework_name}\"\n  local ios_archive_path=\"${tmp_dir}/iOS.xcarchive\"\n  local ios_sim_archive_path=\"${tmp_dir}/iOSSimulator.xcarchive\"\n\n  # Clean up any previous build artifacts\n  rm -rf \"${tmp_dir}\"\n  #rm -rf \"${PRODUCT_DIR}/${framework_name}.xcframework\"\n\n  # Build archives for iOS and iOS Simulator\n  xcodebuild archive \\\n    -scheme \"${scheme}\" \\\n    -project \"${PROJECT_NAME}.xcodeproj\" \\\n    -archivePath \"${ios_sim_archive_path}\" \\\n    -destination \"generic/platform=iOS Simulator\" \\\n    -sdk iphonesimulator \\\n    SKIP_INSTALL=NO \\\n    BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo \"Error: Failed to build archive for ${framework_name} (iOS Simulator)\"; exit 1; }\n\n  xcodebuild archive \\\n    -scheme \"${scheme}\" \\\n    -project \"${PROJECT_NAME}.xcodeproj\" \\\n    -archivePath \"${ios_archive_path}\" \\\n    -destination \"generic/platform=iOS\" \\\n    -sdk iphoneos \\\n    SKIP_INSTALL=NO \\\n    BUILD_LIBRARY_FOR_DISTRIBUTION=YES || { echo \"Error: Failed to build archive for ${framework_name} (iOS)\"; exit 1; }\n\n  rm -rf \"${PRODUCT_DIR}/${framework_name}.xcframework\"\n  \n  xcodebuild -create-xcframework \\\n    -framework ${ios_sim_archive_path}/Products/Library/Frameworks/${framework_name}.framework \\\n    -framework ${ios_archive_path}/Products/Library/Frameworks/${framework_name}.framework \\\n    -output ${PRODUCT_DIR}/${framework_name}.xcframework \\\n    #| xcpretty\n\n   if [ $? -eq 0 ]; then\n      echo \"build_framework ${framework_name} succeeded!\"\n      ((success_count++))\n   else\n      echo \"Error: Failed to create xcframework for ${framework_name}\"\n      exit 1\n  fi\n  #echo \"build_framework ${framework_name} Successed!\"\n}\n\n \n#build_framework \"SwiftCBOR\" && \\\n#build_framework \"iOSMcuManagerLibrary\" && \\\n#build_framework \"ZIPFoundation\" && \\\n#build_framework \"NordicDFU\" && \\\n#build_framework \"BPBleOTA\"\n\nframeworks=(\"SwiftCBOR\" \"iOSMcuManagerLibrary\" \"ZIPFoundation\" \"NordicDFU\" \"BPBleOTA\")\n\nfor framework in \"${frameworks[@]}\"; do\n  build_framework \"$framework\"\n  if [ $result -ne 0 ]; then\n      echo \"Terminating script due to build ${framework} failure\"\n      break\n  fi\ndone\n\nif [ $success_count -eq ${#frameworks[@]} ]; then\n  rm -rf \"${BUILD_DIR}\"\n  echo \"build all frameworks succeeded!\"\n  exit 0\nelse\n  echo \"Failed to build all frameworks\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

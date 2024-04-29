@@ -4,7 +4,7 @@ options:
   deploymentTarget:
     iOS: "12.0"
   bundleIdPrefix: com.bbb.zhxf
-  version: 0.6.2
+  version: 0.6.4
 
 packages:
   iOSMcuManagerLibrary:
@@ -74,7 +74,7 @@ targets:
       - Framework
     templateAttributes:
       frameworSourceFolder: Sources
-      PACKAGE_VERSION: 0.6.2
+      PACKAGE_VERSION: 0.6.4
     dependencies:
         - package: iOSMcuManagerLibrary
         - package: NordicDFU
