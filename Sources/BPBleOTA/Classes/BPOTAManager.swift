@@ -14,12 +14,13 @@ import CoreBluetooth
 import iOSMcuManagerLibrary
 
 
-#if SWIFT_PACKAGE
-    import NordicDFU
-#else
-    import iOSDFULibrary
-#endif
 
+//#if SWIFT_PACKAGE
+//    import NordicDFU
+//#else
+//    import iOSDFULibrary
+//#endif
+import NordicDFU  //iOSDFULibrary 1.4之后 库名命名为NordicDFU
 
 #endif
 
@@ -65,7 +66,7 @@ public class BPOTAManager:NSObject {
     
     fileprivate var smpDFUConfiguration:  FirmwareUpgradeConfiguration {
         return FirmwareUpgradeConfiguration(
-            estimatedSwapTime: smpEstimatedSwapTime, eraseAppSettings: smpEraseAppSettings, pipelineDepth: smpPipelineDepth, byteAlignment: .init(rawValue: UInt64(smpByteAlignment)) ?? .fourByte)
+            estimatedSwapTime: smpEstimatedSwapTime, eraseAppSettings: smpEraseAppSettings, pipelineDepth: smpPipelineDepth, byteAlignment: .init(rawValue: UInt64(smpByteAlignment)) ?? .fourByte,upgradeMode: .confirmOnly)
     }
     
     private var currentDFUProtocol:DFUProtocolType = .NordicDFU
@@ -109,8 +110,7 @@ public class BPOTAManager:NSObject {
             bleTransporter.logDelegate = self.proxy
             bleTransporter.delegate = self.proxy
             let manager  = FirmwareUpgradeManager(transporter: bleTransporter, delegate: self.proxy)
-            manager.mode = .confirmOnly
-           
+           // manager = .confirmOnly  //自iOSMcuManagerLibrary的1.4起已移到smpDFUConfiguration中
             self.dfuManager = manager
             try manager.start(images: package.images,using: smpDFUConfiguration)
             

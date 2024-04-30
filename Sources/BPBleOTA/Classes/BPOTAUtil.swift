@@ -52,4 +52,3 @@ enum UTI: String, CaseIterable {
         return typeOf(file).flatMap({ from($0) })
     }
 }
-

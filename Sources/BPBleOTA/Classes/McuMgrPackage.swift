@@ -12,33 +12,19 @@
 #else
 
 import Foundation
-#if os(macOS)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#endif
 import iOSMcuManagerLibrary
 import ZIPFoundation
- 
 
 // MARK: - McuMgrPackage
- struct McuMgrPackage {
+
+public struct McuMgrPackage {
     
     let images: [ImageManager.Image]
     
     // MARK: - Init
     
     init(from url: URL) throws {
-#if os(iOS)
-    let document = UIDocument(fileURL: url)
-#elseif os(macOS)
-    let document = try NSDocument(contentsOf: url, ofType: "")
-#endif
-        guard let fileType = document.fileType else {
-            throw McuMgrPackage.Error.notAValidDocument
-        }
-        
-        switch UTI.from(fileType) {
+        switch UTI.forFile(url) {
         case .bin:
             self.images = try Self.extractImageFromBinFile(from: url)
         case .zip:
@@ -50,18 +36,23 @@ import ZIPFoundation
     
     // MARK: - API
     
-    static func imageName(at index: Int) -> String {
-        switch index {
-        case 0: return "App Core"
-        case 1: return "Net Core"
-        default: return "Image \(index)"
+    func imageName(at index: Int) -> String {
+        let coreName: String
+        switch images[index].image {
+        case 0: 
+            coreName = "App Core"
+        case 1: 
+            coreName = "Net Core"
+        default: 
+            coreName = "Image \(index)"
         }
+        return "\(coreName) Slot \(images[index].slot)"
     }
     
     func sizeString() -> String {
         var sizeString = ""
         for (i, image) in images.enumerated() {
-            sizeString += "\(image.data.count) bytes (\(Self.imageName(at: i)))"
+            sizeString += "\(image.data.count) bytes (\(imageName(at: i)))"
             guard i != images.count - 1 else { continue }
             sizeString += "\n"
         }
@@ -71,9 +62,8 @@ import ZIPFoundation
     func hashString() throws -> String {
         var result = ""
         for (i, image) in images.enumerated() {
-            let hash = try McuMgrImage(data: image.data).hash
-            let hashString = hash.hexEncodedString(options: .upperCase)
-            result += "0x\(hashString.prefix(6))...\(hashString.suffix(6)) (\(Self.imageName(at: i)))"
+            let hashString = image.hash.hexEncodedString(options: .upperCase)
+            result += "0x\(hashString.prefix(6))...\(hashString.suffix(6)) (\(imageName(at: i)))"
             guard i != images.count - 1 else { continue }
             result += "\n"
         }
@@ -112,7 +102,8 @@ fileprivate extension McuMgrPackage {
     
     static func extractImageFromBinFile(from url: URL) throws -> [ImageManager.Image] {
         let binData = try Data(contentsOf: url)
-        return [ImageManager.Image(image: 0, data: binData)]
+        let binHash = try McuMgrImage(data: binData).hash
+        return [ImageManager.Image(image: 0, hash: binHash, data: binData)]
     }
     
     static func extractImageFromZipFile(from url: URL) throws -> [ImageManager.Image] {
@@ -139,7 +130,8 @@ fileprivate extension McuMgrPackage {
                 throw McuMgrPackage.Error.manifestImageNotFound
             }
             let imageData = try Data(contentsOf: imageURL)
-            return (manifestFile.image, imageData)
+            let imageHash = try McuMgrImage(data: imageData).hash
+            return ImageManager.Image(manifestFile, hash: imageHash, data: imageData)
         }
         try unzippedURLs.forEach { url in
             try fileManager.removeItem(at: url)

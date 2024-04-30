@@ -1,5 +1,4 @@
 {
-  "originHash" : "955d56d51d3d73ab5ec4f58216472b6a4080466b0aa4ae70d6e46c1b00a3ddce",
   "pins" : [
     {
       "identity" : "ios-dfu-library",
@@ -13,7 +12,7 @@
     {
       "identity" : "ios-nrf-connect-device-manager",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager",
+      "location" : "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager.git",
       "state" : {
         "revision" : "70cc2f14bd6b6edb784586993e37860f6084659c",
         "version" : "1.6.0"
@@ -22,7 +21,7 @@
     {
       "identity" : "swiftcbor",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/unrelentingtech/SwiftCBOR",
+      "location" : "https://github.com/unrelentingtech/SwiftCBOR.git",
       "state" : {
         "revision" : "895c9aa84ce3b04106905e398ac870e0cca59d26",
         "version" : "0.4.4"
@@ -38,5 +37,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

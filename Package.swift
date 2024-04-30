@@ -17,11 +17,11 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager.git",
-                 exact:"1.3.3"
+                 from:"1.6.0"
                 ),
         
         .package(
-            url: "https://github.com/NordicSemiconductor/IOS-DFU-Library",exact:"4.13.0"
+            url: "https://github.com/NordicSemiconductor/IOS-DFU-Library",exact:"4.15.3"
                      )
         
     ],
