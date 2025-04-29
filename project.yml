@@ -2,9 +2,9 @@ name: BPBleOTA
 options:
   #carthage: true
   deploymentTarget:
-    iOS: "12.0"
+    iOS: "15.0"
   bundleIdPrefix: com.bbb.zhxf
-  version: 0.7.0
+  version: 0.7.1
 
 packages:
   iOSMcuManagerLibrary:
@@ -74,13 +74,13 @@ targets:
       - Framework
     templateAttributes:
       frameworSourceFolder: Sources
-      PACKAGE_VERSION: 0.7.0
+      PACKAGE_VERSION: 0.7.1
     dependencies:
         - package: iOSMcuManagerLibrary
         - package: NordicDFU
     settings:
       SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
-      CURRENT_PROJECT_VERSION: 0.7.0020240429
+      CURRENT_PROJECT_VERSION: 0.7.0120250429
 
   BPBleOTATests:
     type: bundle.unit-test
