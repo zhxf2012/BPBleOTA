@@ -74,13 +74,13 @@ targets:
       - Framework
     templateAttributes:
       frameworSourceFolder: Sources
-      PACKAGE_VERSION: 0.7.1
+      PACKAGE_VERSION: 0.7.0
     dependencies:
         - package: iOSMcuManagerLibrary
         - package: NordicDFU
     settings:
       SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) SWIFT_PACKAGE"
-      CURRENT_PROJECT_VERSION: 0.7.0120250429
+      CURRENT_PROJECT_VERSION: 0.7.020250429
 
   BPBleOTATests:
     type: bundle.unit-test
