@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "BPBleOTA",
-    platforms: [.iOS(.v12),.macOS(.v10_14)],
+    platforms: [.iOS(.v15),.macOS(.v10_14)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -17,7 +17,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/NordicSemiconductor/IOS-nRF-Connect-Device-Manager.git",
-                 from:"1.6.0"
+                 exact:"1.6.0"
                 ),
         
         .package(

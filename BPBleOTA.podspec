@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BPBleOTA'
-  s.version          = '0.7.0'
+  s.version          = '0.7.1'
   s.summary          = 'a swift library aggregating NordicDFU and SMPDFU implement'
 
 # This description is used to generate tags and improve search results.
